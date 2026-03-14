@@ -1,7 +1,7 @@
 import jwt from "jsonwebtoken";
 
 export const adminLogin = async (req, res) => {
-  console.log("Admin login function working 🚀");
+  // console.log("Admin login function working 🚀");
   try {
     const { email, password } = req.body;
 
@@ -37,7 +37,7 @@ export const adminLogin = async (req, res) => {
     //  res.status(200).json({ message: "Admin dashboard route working 🚀" });
     return res.redirect("/admin/dashboard");
   } catch (err) {
-    // console.error("Login Error:", err.message);
+    console.error("Login Error:", err.message);
     res.render("admin/adminLogin", {
       layout: "admin",
       title: "Admin Login",
