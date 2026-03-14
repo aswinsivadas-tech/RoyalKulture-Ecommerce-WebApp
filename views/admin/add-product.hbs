@@ -1,0 +1,157 @@
+<section class="content-main">
+  <form action="/admin/add-product" method="POST" enctype="multipart/form-data" >
+    <div class="row">
+      <!-- Left side -->
+      <div class="col-9">
+        <div class="content-header">
+          <h2 class="content-title">Add New Product</h2>
+          <div>
+            <button
+              type="button"
+              class="btn btn-light rounded font-sm mr-5 text-body hover-up"
+            >
+              Save to draft
+            </button>
+            <button
+              type="submit"
+              class="btn btn-md rounded font-sm hover-up"
+            >Publish</button>
+          </div>
+        </div>
+
+        <!-- Basic Info -->
+        <div class="card mb-4">
+          <div class="card-header">
+            <h4>Basic</h4>
+          </div>
+          <div class="card-body">
+            <!-- Product Name -->
+            <div class="mb-4">
+              <label for="name" class="form-label">Product Name</label>
+              <input
+                type="text"
+                name="name"
+                id="name"
+                placeholder="Type here"
+                class="form-control"
+              />
+            </div>
+
+            <!-- Brand, Category, Status -->
+            <div class="row">
+              <div class="col-lg-4">
+                <div class="mb-4">
+                  <label for="brand" class="form-label">Brand</label>
+                  <select name="brand" id="brand" class="form-control">
+                    <option value="">Select brand</option>
+                    <option value="Rolex">Rolex</option>
+                    <option value="Fossil">Fossil</option>
+                    <option value="Casio">Casio</option>
+                    <option value="Titan">Titan</option>
+                    <option value="Timex">Timex</option>
+                    <option value="Diesel">Diesel</option>
+                    <option value="Diesel">Cartier</option>
+                  </select>
+                </div>
+              </div>
+              <div class="col-lg-4">
+                <div class="mb-4">
+                  <label for="category" class="form-label">Category</label>
+                  <select name="category" id="category" class="form-control">
+                    <option value="">Select category</option>
+                    <option value="men">Men</option>
+                    <option value="women">Women</option>
+                  </select>
+                </div>
+              </div>
+              <div class="col-lg-4">
+                <div class="mb-4">
+                  <label for="status" class="form-label">Status</label>
+                  <select name="status" id="status" class="form-control">
+                    <option value="active">Active</option>
+                    <option value="inactive">Inactive</option>
+                  </select>
+                </div>
+              </div>
+            </div>
+            <!-- Brand, Category, Status end -->
+            <div class="row">
+              <div class="col-lg-4">
+                <div class="mb-4">
+                  <label class="form-label">Regular price</label>
+                  <input
+                    name="price"
+                    placeholder="₹"
+                    type="number"
+                    class="form-control"
+                  />
+                </div>
+              </div>
+              <div class="col-lg-4">
+                <div class="mb-4">
+                  <label class="form-label">Promotional price</label>
+                  <input
+                    name="discountPrice"
+                    placeholder="₹"
+                    type="number"
+                    class="form-control"
+                  />
+                </div>
+              </div>
+              <div class="col-lg-4">
+                <label class="form-label">Stock</label>
+                <input
+                  name="stock"
+                  placeholder="Qty"
+                  type="number"
+                  class="form-control"
+                />
+              </div>
+            </div>
+            <div class="mb-4">
+              <label for="shortDesc" class="form-label">Short Description</label>
+              <input
+                type="text"
+                name="shortDesc"
+                id="shortDesc"
+                placeholder="Short description"
+                class="form-control"
+              />
+            </div>
+            <div class="mb-4">
+              <label for="description" class="form-label">Full description</label>
+              <textarea
+                name="description"
+                id="description"
+                placeholder="Type here"
+                class="form-control"
+                rows="4"
+              ></textarea>
+            </div>
+
+          </div>
+        </div>
+        <!-- card end// -->
+
+        <!-- Media -->
+        <div class="card mb-4">
+          <div class="card-header">
+            <h4>Media</h4>
+          </div>
+          <div class="card-body">
+            {{!-- <div class="mb-4">
+              <label class="form-label">Thumbnail</label>
+              <input class="form-control" type="file" name="thumbnail" />
+            </div> --}}
+            <div class="mb-4">
+              <label class="form-label">Product Images</label>
+              <input class="form-control" type="file" name="productImages" multiple />
+            </div>
+          </div>
+        </div>
+        <!-- card end// -->
+      </div>
+    </div>
+  </form>
+</section>
+<!-- content-main end// -->

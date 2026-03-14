@@ -1,19 +1,81 @@
-require('dotenv').config();
+import express from "express";
+import dotenv from "dotenv";
+import cors from "cors";
+import helmet from "helmet";
+import path from "path";
+import { fileURLToPath } from "url";
+// import multer from "multer";
+import { engine } from "express-handlebars";
+// import userRoutes from "./routes/userRoutes.js";
+import adminRoutes from "./routes/adminRoutes.js";
 
-const express = require('express');
+import cookieParser from "cookie-parser";
+// import { verifyUser } from "./middleware/verifyUser.js";
 
+/* CONFIGURATIONS */
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
+
+dotenv.config();
 
 const app = express();
+const PORT = process.env.PORT || 3000;
 
-// 3. Define a port number
-const PORT = 9002;
+app.use(cookieParser());
+app.use(cors());
 
-// 4. Create a basic test route
-app.get('/', (req, res) => {
-    res.send('Hello! The server is running successfully from scratch! 🚀');
+app.use("/assets", express.static(path.join(__dirname, "public/assets")));
+//Add for admin assets
+app.use(
+  "/adminAssets",
+  express.static(path.join(__dirname, "public/adminAssets"))
+);
+// Apply user verification before user routes
+app.use((req, res, next) => {
+  // Skip for admin routes
+  if (req.originalUrl.startsWith("/admin")) return next();
+
+  verifyUser(req, res, () => {
+    // Make logged-in user available globally in all HBS views
+    res.locals.loggedInUser = req.loggedInUser;
+    next();
+  });
 });
+/* ROUTES */
+app.use("/admin", adminRoutes);
+// app.use("/", userRoutes);
 
-// 5. Start the server and listen on the defined port
 app.listen(PORT, () => {
-    console.log(`Server is running on http://localhost:${PORT}`);
+  console.log(
+    `process ID ${process.pid}:server running on PORT ${PORT} in dev mode`
+  );
 });
+
+/* VIEW ENGINE SETUP */
+app.engine(
+  "hbs",
+  engine({
+    extname: ".hbs", // use .hbs extension
+    defaultLayout: "user", // default layout file (user.hbs)
+    layoutsDir: path.join(__dirname, "views/layouts"), // layouts folder
+    partialsDir: path.join(__dirname, "views/partials"), // partials folder
+    helpers: {
+      // custom helpers for production scaling
+      upper: (str) => str.toUpperCase(),
+      json: (context) => JSON.stringify(context),
+      eq: (a, b) => a === b,
+      or: (a, b) => a || b,
+      formatDate: (timestamp) => {
+        return new Date(timestamp).toLocaleDateString("en-GB"); // dd/mm/yyyy
+      },
+      ifEquals: function (arg1, arg2, options) {
+        return arg1 == arg2 ? options.fn(this) : options.inverse(this);
+      },
+    },
+  })
+);
+
+// set view engine
+app.set("view engine", "hbs");
+// set views folder
+app.set("views", path.join(__dirname, "views"));

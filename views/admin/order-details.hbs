@@ -1,0 +1,145 @@
+<section class="content-main">
+
+  <!-- Header -->
+<div class="content-header d-flex justify-content-between align-items-center mb-4">
+  <div>
+    <h2 class="content-title card-title" style="color: var(--bs-white);">Order Details</h2>
+    <p style="color: var(--bs-white);">Order ID: <strong>{{order._id}}</strong></p>
+  </div>
+
+  <!-- Action Dropdown -->
+  <div class="dropdown">
+  <button class="btn btn-primary btn-sm dropdown-toggle shadow-sm" type="button" id="actionDropdown" data-bs-toggle="dropdown" aria-expanded="false" style="border-radius: 8px; font-weight: 500; transition: 0.3s;">
+    Action
+  </button>
+  <ul class="dropdown-menu dropdown-menu-end shadow-lg" aria-labelledby="actionDropdown" style="border-radius: 8px; border: 1px solid #e0e0e0;">
+    <li><a class="dropdown-item" href="/admin/update-order-status/{{order._id}}/Pending">Pending</a></li>
+    <li><a class="dropdown-item" href="/admin/update-order-status/{{order._id}}/Processing">Processing</a></li>
+    <li><a class="dropdown-item" href="/admin/update-order-status/{{order._id}}/Shipped">Shipped</a></li>
+    <li><a class="dropdown-item" href="/admin/update-order-status/{{order._id}}/Out for Delivery">Out for Delivery</a></li>
+    <li><a class="dropdown-item" href="/admin/update-order-status/{{order._id}}/Delivered">Delivered</a></li>
+    <li><a class="dropdown-item text-danger" href="/admin/update-order-status/{{order._id}}/Cancelled">Cancelled</a></li>
+  </ul>
+</div>
+
+<style>
+  .dropdown-item {
+    transition: 0.2s;
+  }
+
+  .dropdown-item:hover {
+    background-color: #f0f0f0;
+    color: #333;
+  }
+
+  .btn-primary:hover {
+    background-color: #1d6edb;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  }
+</style>
+
+</div>
+
+   
+  </div>
+
+  <!-- Customer Info -->
+  <div class="card mb-4" style="border-radius: 8px; border: 1px solid var(--bs-white); background-color: var(--bs-gray-dark);">
+    <header class="card-header" style="background-color: #1a1a3a; color: var(--bs-white); padding: 12px; border-radius: 8px 8px 0 0;">
+      <h4>Customer Information</h4>
+    </header>
+    <div class="card-body" style="padding: 15px; color: var(--bs-white);">
+      <p><strong>Name:</strong> <span style="color: var(--bs-white);">{{order.address.billingName}}</span></p>
+      <p><strong>Paymet Method:</strong> <span style="color: var(--bs-white);">{{order.paymentMethod}}</span></p>
+      <p><strong>Address:</strong> <span style="color: var(--bs-white);">{{order.address.address}}, {{order.address.city}}, <p><strong>Status:</strong> 
+
+  {{#if (eq order.status "Pending")}}
+    <span style="background-color: #ffc107; color: #212529; font-weight: bold; padding: 2px 6px; border-radius: 4px;">
+      Pending
+    </span>
+  {{/if}}
+
+  {{#if (eq order.status "Processing")}}
+    <span style="background-color: #0d6efd; color: #ffffff; font-weight: bold; padding: 2px 6px; border-radius: 4px;">
+      Processing
+    </span>
+  {{/if}}
+
+  {{#if (eq order.status "Shipped")}}
+    <span style="background-color: #0dcaf0; color: #212529; font-weight: bold; padding: 2px 6px; border-radius: 4px;">
+      Shipped
+    </span>
+  {{/if}}
+
+  {{#if (eq order.status "Delivered")}}
+    <span style="background-color: #198754; color: #ffffff; font-weight: bold; padding: 2px 6px; border-radius: 4px;">
+      Delivered
+    </span>
+  {{/if}}
+
+  {{#if (eq order.status "Cancelled")}}
+    <span style="background-color: #dc3545; color: #ffffff; font-weight: bold; padding: 2px 6px; border-radius: 4px;">
+      Cancelled
+    </span>
+  {{/if}}
+
+  {{#unless order.status}}
+    <span style="background-color: gray; color: #ffffff; font-weight: bold; padding: 2px 6px; border-radius: 4px;">
+      Unknown
+    </span>
+  {{/unless}}
+
+</p>
+
+      <p><strong>Date:</strong> <span style="color: var(--bs-white);">{{order.createdAt}}</span></p>
+    </div>
+  </div>
+
+  <!-- Ordered Products -->
+  <div class="card mb-4" style="border-radius: 8px; border: 1px solid var(--bs-white); background-color: var(--bs-gray-dark);">
+    <header class="card-header" style="background-color: #1a1a3a; color: var(--bs-white); padding: 12px; border-radius: 8px 8px 0 0;">
+      <h4>Ordered Products</h4>
+    </header>
+
+    <div class="card-body table-responsive" style="padding: 15px;">
+      <table class="table align-middle table-striped" style="background-color: var(--bs-gray-dark); color: var(--bs-white); border: 1px solid var(--bs-white);">
+        <thead style="background-color: #1a1a3a; color: var(--bs-white);">
+          <tr>
+            <th style="color: var(--bs-white);">Product</th>
+            <th style="color: var(--bs-white);">Brand</th>
+            <th style="color: var(--bs-white);">Stock</th>
+            <th style="color: var(--bs-white);">Price</th>
+            <th style="color: var(--bs-white);">Qty</th>
+            <th style="color: var(--bs-white);">Total</th>
+          </tr>
+        </thead>
+        <tbody>
+          {{#each cart}}
+            <tr style="border-bottom: 1px solid var(--bs-white); color: var(--bs-white);">
+              <td style="color: var(--bs-white);">{{this.name}}</td>
+              <td style="color: var(--bs-white);">{{this.brand}}</td>
+              <td>
+                {{#if this.stock}}
+                  <span style=>
+                    Stock ({{this.stock}})
+                  </span>
+                {{else}}
+                  <span style="background-color: var(--bs-danger); color: var(--bs-white); padding: 2px 6px; border-radius: 4px;">
+                    Out of Stock
+                  </span>
+                {{/if}}
+              </td>
+              <td style="color: var(--bs-white);">${{this.price}}</td>
+              <td style="color: var(--bs-white);">{{this.quantity}}</td>
+              <td style="color: var(--bs-white);">${{this.total}}</td>
+            </tr>
+          {{/each}}
+        </tbody>
+      </table>
+    </div>
+
+    <div class="card-footer text-end" style="padding: 12px; background-color: #1a1a3a; border-radius: 0 0 8px 8px;">
+      <h4 style="color: var(--bs-white);">Total: ${{totalAmount}}</h4>
+    </div>
+  </div>
+</section>

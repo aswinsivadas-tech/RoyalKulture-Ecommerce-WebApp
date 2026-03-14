@@ -1,0 +1,116 @@
+<section class="content-main">
+  <div class="content-header">
+    <div>
+      <h2 class="content-title card-title">Products List</h2>
+      <p>Lorem ipsum dolor sit amet.</p>
+    </div>
+    <div>
+      <a href="#" class="btn btn-light rounded font-md">Export</a>
+      <a href="#" class="btn btn-light rounded font-md">Import</a>
+      <a
+        href="/admin/add-product"
+        style="background: linear-gradient(45deg, #f39c12, #f1c40f); color: white; font-weight: 600; padding: 5px 12px; border-radius: 6px; text-decoration: none; box-shadow: 0 4px 8px rgba(0,0,0,0.2);"
+        class="btn btn-sm"
+      > Create new </a>
+    </div>
+  </div>
+  <div class="card mb-4">
+    <header class="card-header">
+      <div class="row gx-3">
+        <div class="col-lg-4 col-md-6 me-auto">
+          <input type="text" placeholder="Search..." class="form-control" />
+        </div>
+        <div class="col-lg-2 col-6 col-md-3">
+          <select class="form-select">
+            <option>All category</option>
+            <option>Men</option>
+            <option>Women</option>
+            <option>Kids</option>
+          </select>
+        </div>
+        <div class="col-lg-2 col-6 col-md-3">
+          <select class="form-select">
+            <option>Latest added</option>
+            <option>Cheap first</option>
+            <option>Most viewed</option>
+          </select>
+        </div>
+      </div>
+    </header>
+    <div class="card-body">
+      <div
+        class="row gx-3 row-cols-1 row-cols-sm-2 row-cols-md-3 row-cols-xl-4 row-cols-xxl-5"
+      >
+        {{#each products}}
+          <div class="col">
+            <div class="card card-product-grid">
+              <a href="#" class="img-wrap">
+                <img src="{{this.picturePath.[0]}}" alt="{{this.name}}" />
+              </a>
+              <div class="info-wrap">
+                <a href="#" class="title text-truncate">{{this.name}}</a>
+                <div class="price mb-1">
+                  <span
+                    class="text-decoration-line-through text-muted"
+                  >{{this.price}}</span>
+                  <span
+                    class="fw-bold text-success"
+                  >{{this.discountPrice}}</span>
+                </div>
+                <div class="mb-1">
+                  <small>Category: {{this.category}}</small><br />
+                  <small>Brand: {{this.brand}}</small><br />
+                  <small>Stock: {{this.stock}}</small><br />
+                  <small>Status:
+                    {{#if (eq this.status "active")}}
+                      <span
+                        class="badge rounded-pill alert-success"
+                      >Active</span>
+                    {{else}}
+                      <span
+                        class="badge rounded-pill alert-danger"
+                      >Disabled</span>
+                    {{/if}}
+                  </small>
+                </div>
+                <!-- Edit button -->
+                <a
+                  href="/admin/products/edit/{{this._id}}"
+                  class="btn btn-sm font-sm rounded btn-brand"
+                > <i class="material-icons md-edit"></i> Edit </a>
+                <!-- Soft Delete button -->
+                <form
+                  action="/admin/products/delete/{{this._id}}"
+                  method="POST"
+                  style="display:inline-block"
+                >
+                  <button
+                    type="submit"
+                    class="btn btn-sm font-sm btn-light rounded"
+                  >
+                    <i class="material-icons md-delete_forever"></i>
+                    Delete
+                  </button>
+                </form>
+              </div>
+            </div>
+          </div>
+        {{/each}}
+      </div>
+    </div>
+  </div>
+  <div class="pagination-area mt-30 mb-50">
+    <nav aria-label="Page navigation example">
+      <ul class="pagination justify-content-start">
+        <li class="page-item active"><a class="page-link" href="#">01</a></li>
+        <li class="page-item"><a class="page-link" href="#">02</a></li>
+        <li class="page-item"><a class="page-link" href="#">03</a></li>
+        <li class="page-item"><a class="page-link dot" href="#">...</a></li>
+        <li class="page-item"><a class="page-link" href="#">16</a></li>
+        <li class="page-item"><a class="page-link" href="#"><i
+              class="material-icons md-chevron_right"
+            ></i></a></li>
+      </ul>
+    </nav>
+  </div>
+</section>

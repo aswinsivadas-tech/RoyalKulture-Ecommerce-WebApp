@@ -1,0 +1,147 @@
+<section class="content-main">
+  <form action="/admin/edit-product/{{product._id}}" method="POST">
+    <div class="row">
+      <!-- Left side -->
+      <div class="col-9">
+        <div class="content-header">
+          <h2 class="content-title">Edit Product: {{product.name}}</h2>
+          <div>
+            <button
+              type="button"
+              class="btn btn-light rounded font-sm mr-5 text-body hover-up"
+            >
+              Save to draft
+            </button>
+            <button
+              type="submit"
+              class="btn btn-md rounded font-sm hover-up"
+            >Edit</button>
+          </div>
+        </div>
+
+        <!-- Basic Info -->
+        <div class="card mb-4">
+          <div class="card-header">
+            <h4>Basic</h4>
+          </div>
+          <div class="card-body">
+            <!-- Product Name -->
+            <div class="mb-4">
+              <label for="name" class="form-label">Product Name</label>
+              <input
+                type="text"
+                name="name"
+                id="name"
+                placeholder="Type here"
+                class="form-control"
+                value="{{product.name}}"
+              />
+            </div>
+
+            <!-- Brand, Category, Status -->
+            <div class="row">
+              <div class="col-lg-4">
+                <div class="mb-4">
+                  <label for="brand" class="form-label">Brand</label>
+                  <select name="brand" id="brand" class="form-control">
+                    <option value="">Select brand</option>
+                    <option value="Rolex" {{#ifEquals product.brand "Rolex"}}selected{{/ifEquals}}>Rolex</option>
+                    <option value="Fossil" {{#ifEquals product.brand "Fossil"}}selected{{/ifEquals}}>Fossil</option>
+                    <option value="Casio" {{#ifEquals product.brand "Casio"}}selected{{/ifEquals}}>Casio</option>
+                    <option value="Titan" {{#ifEquals product.brand "Titan"}}selected{{/ifEquals}}>Titan</option>
+                    <option value="Timex" {{#ifEquals product.brand "Timex"}}selected{{/ifEquals}}>Timex</option>
+                    <option value="Diesel" {{#ifEquals product.brand "Diesel"}}selected{{/ifEquals}}>Diesel</option>
+                    <option value="Cartier" {{#ifEquals product.brand "Cartier"}}selected{{/ifEquals}}>Cartier</option>
+                  </select>
+                </div>
+              </div>
+              <div class="col-lg-4">
+                <div class="mb-4">
+                  <label for="category" class="form-label">Category</label>
+                  <select name="category" id="category" class="form-control">
+                    <option value="">Select category</option>
+                    <option value="men" {{#ifEquals product.category "men"}}selected{{/ifEquals}}>Men</option>
+                    <option value="women" {{#ifEquals product.category "women"}}selected{{/ifEquals}}>Women</option>
+                  </select>
+                </div>
+              </div>
+              <div class="col-lg-4">
+                <div class="mb-4">
+                  <label for="status" class="form-label">Status</label>
+                  <select name="status" id="status" class="form-control">
+                    <option value="active" {{#ifEquals product.status "active"}}selected{{/ifEquals}}>Active</option>
+                    <option value="inactive" {{#ifEquals product.status "inactive"}}selected{{/ifEquals}}>Inactive</option>
+                  </select>
+                </div>
+              </div>
+            </div>
+            <!-- Brand, Category, Status end -->
+
+            <div class="row">
+              <div class="col-lg-4">
+                <div class="mb-4">
+                  <label class="form-label">Regular price</label>
+                  <input
+                    name="price"
+                    placeholder="₹"
+                    type="number"
+                    class="form-control"
+                    value="{{product.price}}"
+                  />
+                </div>
+              </div>
+              <div class="col-lg-4">
+                <div class="mb-4">
+                  <label class="form-label">Promotional price</label>
+                  <input
+                    name="discountPrice"
+                    placeholder="₹"
+                    type="number"
+                    class="form-control"
+                    value="{{product.discountPrice}}"
+                  />
+                </div>
+              </div>
+              <div class="col-lg-4">
+                <label class="form-label">Stock</label>
+                <input
+                  name="stock"
+                  placeholder="Qty"
+                  type="number"
+                  class="form-control"
+                  value="{{product.stock}}"
+                />
+              </div>
+            </div>
+
+            <div class="mb-4">
+              <label for="shortDesc" class="form-label">Short Description</label>
+              <input
+                type="text"
+                name="shortDesc"
+                id="shortDesc"
+                placeholder="Short description"
+                class="form-control"
+                value="{{product.shortDesc}}"
+              />
+            </div>
+
+            <div class="mb-4">
+              <label for="description" class="form-label">Full description</label>
+              <textarea
+                name="description"
+                id="description"
+                placeholder="Type here"
+                class="form-control"
+                rows="4"
+              >{{product.description}}</textarea>
+            </div>
+
+          </div>
+        </div>
+        <!-- card end -->
+      </div>
+    </div>
+  </form>
+</section>
+<!-- content-main end -->
