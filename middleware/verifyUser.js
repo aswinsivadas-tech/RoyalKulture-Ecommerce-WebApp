@@ -1,6 +1,7 @@
-import jwt from "jsonwebtoken";
+// middleware/verifyUser.js
 import collection from "../config/collection.js";
 import connectToDatabase from "../config/db.js";
+import jwt from "jsonwebtoken";
 
 export const verifyUser = async (req, res, next) => {
     try {
@@ -11,9 +12,9 @@ export const verifyUser = async (req, res, next) => {
         }
 
         const decoded = jwt.verify(token, process.env.JWT_SECRET);
-
-        // Connect to DB to get the latest counts
         const db = await connectToDatabase(process.env.DATABASE);
+        
+        // Fetch user to get live cart and wishlist lengths
         const user = await db.collection(collection.USERS_COLLECTION).findOne({ userId: decoded.id });
 
         if (user) {
@@ -21,17 +22,14 @@ export const verifyUser = async (req, res, next) => {
                 id: user.userId,
                 name: user.name,
                 email: user.email,
-                // Dynamically calculate lengths of the arrays
+                // These counts will now update on every page load/refresh
                 cartCount: user.cart ? user.cart.length : 0,
                 wishlistCount: user.wishlist ? user.wishlist.length : 0
             };
-        } else {
-            req.loggedInUser = null;
         }
-        
+
         next();
     } catch (err) {
-        console.error("User token verification failed:", err.message);
         req.loggedInUser = null;
         next();
     }

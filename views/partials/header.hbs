@@ -112,6 +112,9 @@
             alt="wishlist"
             src="/userAssets/imgs/theme/icons/icon-heart.svg"
           />
+          {{#if loggedInUser.wishlistCount}}
+            <span class="pro-count blue">{{loggedInUser.wishlistCount}}</span>
+        {{/if}}
         </a>
       </div>
 
@@ -121,6 +124,9 @@
             alt="cart"
             src="/userAssets/imgs/theme/icons/icon-cart.svg"
           />
+          {{#if loggedInUser.cartCount}}
+            <span class="pro-count blue">{{loggedInUser.cartCount}}</span>
+        {{/if}}
         </a>
       </div>
     {{/if}}
