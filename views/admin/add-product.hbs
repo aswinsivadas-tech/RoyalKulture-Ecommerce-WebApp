@@ -1,5 +1,5 @@
 <section class="content-main">
-  <form action="/admin/add-product" method="POST" enctype="multipart/form-data" >
+  <form action="/admin/add-product" method="POST" enctype="multipart/form-data">
     <div class="row">
       <!-- Left side -->
       <div class="col-9">
@@ -44,13 +44,16 @@
                   <label for="brand" class="form-label">Brand</label>
                   <select name="brand" id="brand" class="form-control">
                     <option value="">Select brand</option>
-                    <option value="Rolex">Rolex</option>
-                    <option value="Fossil">Fossil</option>
-                    <option value="Casio">Casio</option>
-                    <option value="Titan">Titan</option>
-                    <option value="Timex">Timex</option>
-                    <option value="Diesel">Diesel</option>
-                    <option value="Diesel">Cartier</option>
+                    <option value="Nike">Nike</option>
+                    <option value="Adidas">Adidas</option>
+                    <option value="Puma">Puma</option>
+                    <option value="New Balance">New Balance</option>
+                    <option value="Converse">Converse</option>
+                    <option value="Vans">Vans</option>
+                    <option value="Reebok">Reebok</option>
+                    <option value="Jordan">Jordan</option>
+                    <option value="Under Armour">Under Armour</option>
+                    <option value="ASICS">ASICS</option>
                   </select>
                 </div>
               </div>
@@ -59,11 +62,15 @@
                   <label for="category" class="form-label">Category</label>
                   <select name="category" id="category" class="form-control">
                     <option value="">Select category</option>
-                    <option value="men">Men</option>
-                    <option value="women">Women</option>
+                    <option value="Men">Men</option>
+                    <option value="Women">Women</option>
+                    {{!-- <option value="Kids">Kids</option> --}}
                   </select>
                 </div>
               </div>
+
+
+              
               <div class="col-lg-4">
                 <div class="mb-4">
                   <label for="status" class="form-label">Status</label>
@@ -139,13 +146,18 @@
             <h4>Media</h4>
           </div>
           <div class="card-body">
-            {{!-- <div class="mb-4">
+            {{! <div class="mb-4">
               <label class="form-label">Thumbnail</label>
               <input class="form-control" type="file" name="thumbnail" />
-            </div> --}}
+            </div> }}
             <div class="mb-4">
               <label class="form-label">Product Images</label>
-              <input class="form-control" type="file" name="productImages" multiple />
+              <input
+                class="form-control"
+                type="file"
+                name="productImages"
+                multiple
+              />
             </div>
           </div>
         </div>

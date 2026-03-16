@@ -167,6 +167,7 @@ export const adminDashboardPage = async (req, res) => {
       );
       return dayData ? dayData.orderCount : 0;
     });
+    
 
     // console.log("wormnesData>>>>",womenData);
     // console.log("mnesData>>>>", menData);
