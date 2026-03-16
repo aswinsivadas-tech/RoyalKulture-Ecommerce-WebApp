@@ -1,0 +1,45 @@
+<div class="card mx-auto" style="max-width: 600px; margin-top: 50px;">
+    <div class="card-header">
+        <h5 class="mb-0">Account Details</h5>
+    </div>
+    <div class="card-body">
+        {{#if success}}
+            <div class="alert alert-success">{{success}}</div>
+        {{/if}}
+        {{#if error}}
+            <div class="alert alert-danger">{{error}}</div>
+        {{/if}}
+
+        <form method="post" name="enq">
+            <div class="row g-3">
+                <div class="col-md-6">
+                    <label class="form-label">Name <span class="text-danger">*</span></label>
+                    <input required class="form-control" name="name" type="text" value="{{user.name}}">
+                </div>
+                <div class="col-12">
+                    <label class="form-label">Email<span class="text-danger">*</span></label>
+                    <input required class="form-control" name="email" type="email" value="{{user.email}}">
+                </div>
+
+                <div class="col-12">
+                    <label class="form-label">Current Password <span class="text-danger">*</span></label>
+                    <input required class="form-control" name="password" type="password" placeholder="Enter current password">
+                </div>
+
+                <div class="col-12">
+                    <label class="form-label">New Password</label>
+                    <input class="form-control" name="npassword" type="password" placeholder="Enter new password (optional)">
+                </div>
+
+                <div class="col-12">
+                    <label class="form-label">Confirm Password</label>
+                    <input class="form-control" name="cpassword" type="password" placeholder="Confirm new password (optional)">
+                </div>
+
+                <div class="col-12 text-center">
+                    <button type="submit" class="btn btn-primary mt-3" name="submit" value="Submit">Save Changes</button>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>

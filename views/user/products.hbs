@@ -1,0 +1,141 @@
+<main class="main">
+  <section class="mt-50 mb-50">
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-12">
+
+          <div class="row product-grid-3">
+            {{#if products.length}}
+              {{#each products}}
+                <div class="col-lg-3 col-md-4 col-sm-6">
+                  <div class="product-cart-wrap mb-30">
+
+                    <!-- Product Image -->
+                    <div class="product-img-action-wrap">
+                      <div class="product-img product-img-zoom">
+                        <a href="/productDetails?id={{this._id}}">
+                          {{#if this.picturePath}}
+                            <img class="default-img" src="{{this.picturePath.[0]}}" alt="{{this.name}}" />
+                            <img class="hover-img" src="{{this.picturePath.[0]}}" alt="{{this.name}}" />
+                          {{else}}
+                            <img class="default-img" src="/userAssets/imgs/default-product.png" alt="No image available" />
+                            <img class="hover-img" src="/userAssets/imgs/default-product.png" alt="No image available" />
+                          {{/if}}
+                        </a>
+                      </div>
+
+                      <!-- Hover Actions -->
+                                             {{#if ../user}}
+  <div class="product-action-1">
+    <form action="/add-to-wishlist" method="post">
+      <input type="hidden" name="productId" value="{{this._id}}" />
+      <button
+        type="submit"
+        aria-label="Add To Wishlist"
+        style="
+          all: unset;
+          display: inline-flex;
+          align-items: center;
+          justify-content: center;
+          width: 40px;
+          height: 40px;
+          border-radius: 50%;
+          background-color: #f0f0f0;
+          cursor: pointer;
+          transition: background-color 0.3s, color 0.3s;
+        "
+        onmouseover="this.style.backgroundColor='#4caf50'; this.querySelector('i').style.color='#fff';"
+        onmouseout="this.style.backgroundColor='#f0f0f0'; this.querySelector('i').style.color='#333';"
+      >
+        <i class="fi-rs-heart" style="color: #333; font-size: 18px;"></i>
+      </button>
+    </form>
+  </div>
+{{/if}}
+                      <!-- Brand Badge -->
+                      <div class="product-badges product-badges-position product-badges-mrg">
+                        <span class="hot">{{this.brand}}</span>
+                      </div>
+                      {{#if this.badge}}
+                        <div class="product-badges product-badges-position product-badges-mrg">
+                          <span class="{{this.badge.type}}">{{this.badge.text}}</span>
+                        </div>
+                      {{/if}}
+                    </div>
+
+                    <!-- Product Info -->
+                    <div class="product-content-wrap">
+                      <div class="product-category">
+                        <a href="#">{{this.category}}</a>
+                      </div>
+                      <h2>
+                        <a href="/productDetails?id={{this._id}}">{{this.name}}</a>
+                      </h2>
+                      <div class="title" title="Stock Status">
+                        <span>{{this.stockStatus}}</span>
+                      </div>
+
+                      <!-- Price with Discount -->
+                      <div class="product-price">
+                        {{#if this.discountPrice}}
+                          <span class="text-">₹{{this.discountPrice}}</span>
+                          <span class="old-price">₹{{this.price}}</span>
+                        {{else}}
+                          <span>₹{{this.price}}</span>
+                        {{/if}}
+                      </div>
+
+                      <!-- Add to Cart -->
+    {{#if ../user}}
+      {{#unless (eq this.stockStatus "🔴 Currently unavailable")}}
+        <div class="product-action-1 show">
+          <form action="/add-to-cart" method="post">
+            <input type="hidden" name="productId" value="{{this._id}}" />
+            <input type="hidden" name="name" value="{{this.name}}" />
+            <input type="hidden" name="brand" value="{{this.brand}}" />
+            <input type="hidden" name="price" value="{{this.price}}" />
+            <input type="hidden" name="image" value="{{this.picturePath.[0]}}" />
+            <input type="hidden" name="quantity" value="1" />
+
+            <button
+              type="submit"
+              aria-label="Add To Cart"
+              style="
+                all: unset;
+                display: inline-flex;
+                align-items: center;
+                justify-content: center;
+                width: 40px;
+                height: 40px;
+                border-radius: 50%;
+                background-color: #f0f0f0;
+                cursor: pointer;
+                transition: background-color 0.3s, color 0.3s;
+              "
+              onmouseover="this.style.backgroundColor='#4caf50'; this.querySelector('i').style.color='#fff';"
+              onmouseout="this.style.backgroundColor='#f0f0f0'; this.querySelector('i').style.color='#333';"
+            >
+              <i
+                class="fi-rs-shopping-bag-add"
+                style="color: #333; font-size: 18px;"
+              ></i>
+            </button>
+          </form>
+        </div>
+      {{/unless}}
+    {{/if}}
+                    </div>
+
+                  </div>
+                </div>
+              {{/each}}
+            {{else}}
+              <p>No products available right now.</p>
+            {{/if}}
+          </div>
+
+        </div>
+      </div>
+    </div>
+  </section>
+</main>

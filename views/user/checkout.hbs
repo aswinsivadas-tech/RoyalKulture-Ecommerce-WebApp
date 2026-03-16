@@ -1,0 +1,156 @@
+<main class="main">
+  <section class="mt-50 mb-50">
+    <div class="container">
+      <div class="row">
+
+        <!-- ================= LEFT COLUMN ================= -->
+        <div class="col-md-6">
+
+          <!-- 1️⃣ Select Saved Address (show only if user has addresses) -->
+          {{#if addresses.length}}
+          <form method="POST" action="/place-order" id="orderForm">
+            <div class="mb-25">
+              <h4>Select Billing Address</h4>
+            </div>
+
+            {{#each addresses}}
+            <div class="card p-3 border mb-3">
+              <div class="form-check">
+                <input
+                  class="form-check-input"
+                  type="radio"
+                  name="selectedAddress"
+                  id="address{{@index}}"
+                  value="{{@index}}"
+                  required
+                />
+                <label class="form-check-label" for="address{{@index}}">
+                  <strong>{{this.billingName}}</strong><br />
+                  {{this.address}}<br />
+                  {{#if this.landmark}}Landmark: {{this.landmark}}<br />{{/if}}
+                  Phone: {{this.phone}}
+                </label>
+              </div>
+            </div>
+            {{/each}}
+          </form>
+          {{/if}}
+
+          <!-- 2️⃣ Add New Address -->
+          <form method="POST" action="/create-address" class="mt-50">
+            <div class="mb-25">
+              <h4>Add New Billing Address</h4>
+            </div>
+
+            <div class="form-group">
+              <input type="text" required name="billingName" placeholder="Billing name" />
+            </div>
+            <div class="form-group">
+              <input type="text" required name="address" placeholder="Address" />
+            </div>
+            <div class="form-group">
+              <input type="text" name="landmark" placeholder="Landmark (optional)" />
+            </div>
+            <div class="form-group">
+              <input type="text" required name="phone" placeholder="Phone number" />
+            </div>
+
+            <div class="form-group mt-3">
+              <button type="submit" class="btn btn-outline-primary btn-block">
+                Save Address
+              </button>
+            </div>
+          </form>
+
+        </div>
+
+        <!-- ================= RIGHT COLUMN ================= -->
+        <div class="col-md-6">
+
+          <!-- Your Orders -->
+          <div class="order_review mb-40">
+            <div class="mb-20">
+              <h4>Your Orders</h4>
+            </div>
+            <div class="table-responsive order_table text-center">
+              <table class="table">
+                <thead>
+                  <tr>
+                    <th colspan="2">Product</th>
+                    <th>Total</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {{#each cart}}
+                  <tr>
+                    <td class="image product-thumbnail">
+                      <img src="{{this.image}}" alt="{{this.name}}" />
+                    </td>
+                    <td>
+                      <h5><a href="#">{{this.name}}</a></h5>
+                      <span class="product-qty">x {{this.quantity}}</span>
+                    </td>
+                    <td>₹{{this.total}}</td>
+                  </tr>
+                  {{/each}}
+                  <tr>
+                    <th>Shipping</th>
+                    <td colspan="2"><em>Free shipping</em></td>
+                  </tr>
+                  <tr>
+                    <th>Total</th>
+                    <td colspan="2" class="product-subtotal">
+                      <span class="font-xl text-brand fw-900">₹{{total}}</span>
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+
+          <!-- Payment + Place Order -->
+          <div class="payment_method">
+            <div class="mb-25">
+              <h5>Payment</h5>
+            </div>
+            <div class="payment_option">
+              <div class="custome-radio">
+                <input
+                  class="form-check-input"
+                  required
+                  type="radio"
+                  name="payment_option"
+                  id="cod"
+                  value="COD"
+                  checked
+                  form="orderForm"
+                />
+                <label class="form-check-label" for="cod">Cash on Delivery</label>
+              </div>
+              {{!-- <div class="custome-radio">
+                <input
+                  class="form-check-input"
+                  required
+                  type="radio"
+                  name="payment_option"
+                  id="razorpay"
+                  value="Razorpay"
+                  form="orderForm"
+                />
+                <label class="form-check-label" for="razorpay">Razorpay</label>
+              </div> --}}
+            </div>
+          </div>
+
+          <div class="form-group mt-3">
+            <button type="submit" form="orderForm" class="btn btn-fill-out btn-block">
+              Place Order
+            </button>
+          </div>
+
+        </div>
+
+      </div>
+    </div>
+  </section>
+</main>

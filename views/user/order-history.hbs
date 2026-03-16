@@ -1,0 +1,101 @@
+<main class="main">
+  <section class="mt-50 mb-50">
+    <div class="container">
+      <h2 class="mb-4 text-center fw-bold">Order History</h2>
+
+      {{#if orders.length}}
+      <div class="order-history">
+        {{#each orders}}
+        <div class="order-card p-4 border">
+
+          <!-- HEADER -->
+          <div class="d-flex justify-content-between align-items-center mb-3 border-bottom pb-2">
+            <div>
+              <h5 class="mb-1 text-dark fw-semibold">
+                Order ID: <span class="text-secondary">{{this._id}}</span>
+              </h5>
+              <small class="text-muted">Placed on: {{this.createdAt}}</small>
+            </div>
+
+            <div>
+              <span class="badge 
+                px-3 py-2 rounded-pill
+                {{#if (eq this.status 'Delivered')}}order-status-delivered
+                {{else if (eq this.status 'Shipped')}}order-status-shipped
+                {{else if (eq this.status 'Pending')}}order-status-pending
+                {{else if (eq this.status 'Cancelled')}}order-status-cancelled
+                {{else}}order-status-other
+                {{/if}}">
+                {{this.status}}
+              </span>
+            </div>
+          </div>
+
+          <!-- ADDRESS + PAYMENT -->
+          <div class="row mb-3">
+            <div class="col-md-6">
+              <h6 class="fw-bold mb-2">Billing Details</h6>
+              <p class="mb-1">{{this.address.billingName}}</p>
+              <p class="mb-1">{{this.address.address}}</p>
+              <p class="mb-1">Landmark: {{this.address.landmark}}</p>
+              <p class="mb-1">Phone: {{this.address.phone}}</p>
+              <p class="mb-0">Payment: <strong>{{this.address.paymentMethod}}</strong></p>
+            </div>
+
+            <div class="col-md-6 text-md-end mt-3 mt-md-0">
+              <h6 class="fw-bold text-muted">Order Summary</h6>
+              <p class="mb-1">Items: {{this.cart.length}}</p>
+              <p class="mb-1 fw-semibold">Total Amount: <span class="text-success">₹{{this.totalAmount}}</span></p>
+            </div>
+          </div>
+
+          <!-- PRODUCT TABLE -->
+          <div class="table-responsive">
+            <table class="table align-middle mb-0">
+              <thead class="table-light">
+                <tr>
+                  <th>Product</th>
+                  <th>Brand</th>
+                  <th>Qty</th>
+                  <th>Price</th>
+                  <th>Total</th>
+                  <th>Image</th>
+                </tr>
+              </thead>
+              <tbody>
+                {{#each this.cart}}
+                <tr>
+                  <td class="fw-medium">{{this.name}}</td>
+                  <td>{{this.brand}}</td>
+                  <td>{{this.quantity}}</td>
+                  <td>₹{{this.price}}</td>
+                  <td>₹{{this.total}}</td>
+                  <td><img src="{{this.image}}" alt="{{this.name}}" class="rounded" width="60"></td>
+                </tr>
+                {{/each}}
+              </tbody>
+            </table>
+          </div>
+        </div>
+        {{/each}}
+      </div>
+
+      {{else}}
+      <div class="text-center mt-5">
+        <img src="/userAssets/images/empty-orders.svg" alt="No Orders" width="150" class="mb-3">
+        <p class="lead text-muted">You have no orders yet.</p>
+        <a href="/shop" class="btn btn-primary mt-2 px-4">Shop Now</a>
+      </div>
+      {{/if}}
+    </div>
+  </section>
+
+  <!-- Inline Styles for Status Badges -->
+  <style>
+    .order-status-delivered { background-color: #28a745; color: #fff; }
+    .order-status-shipped   { background-color: #17a2b8; color: #fff; }
+    .order-status-pending   { background-color: #ffc107; color: #212529; }
+    .order-status-cancelled { background-color: #dc3545; color: #fff; }
+    .order-status-other     { background-color: #6c757d; color: #fff; }
+  </style>
+</main>

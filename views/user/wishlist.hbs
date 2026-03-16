@@ -1,0 +1,78 @@
+<main class="main">
+    
+
+    <section class="mt-50 mb-50">
+        <div class="container">
+            <div class="row">
+                <div class="col-12">
+                    {{#if wishlist.length}}
+                    <div class="table-responsive">
+                        <table class="table shopping-summery text-center">
+                            <thead>
+                                <tr class="main-heading">
+                                    <th scope="col" colspan="2">Product</th>
+                                    <th scope="col">Price</th>
+                                    <th scope="col">Stock Status</th>
+                                    <th scope="col">Action</th>
+                                    <th scope="col">Remove</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                {{#each wishlist}}
+                                <tr>
+                                    <td class="image product-thumbnail">
+                                        <img src="{{this.image}}" alt="{{this.name}}">
+                                    </td>
+                                    <td class="product-des product-name">
+                                        <h5 class="product-name">
+                                            <a href="/productDetails?id={{this.productId}}">{{this.name}}</a>
+                                        </h5>
+                                        <p class="font-xs">{{this.shortDescription}}</p>
+                                    </td>
+                                    <td class="price" data-title="Price">
+                                        <span>₹{{this.price}}</span>
+                                    </td>
+                                    <td class="text-center" data-title="Stock">
+                                        {{#if this.inStock}}
+                                            <span class="color3 font-weight-bold">In Stock</span>
+                                        {{else}}
+                                            <span class="text-danger font-weight-bold">Out of Stock</span>
+                                        {{/if}}
+                                    </td>
+                                    <td class="text-right" data-title="Cart">
+                                        <form action="/add-to-cart" method="POST">
+                                            <input type="hidden" name="productId" value="{{this.productId}}">
+                                            <input type="hidden" name="name" value="{{this.name}}">
+                                            <input type="hidden" name="brand" value="{{this.brand}}">
+                                            <input type="hidden" name="price" value="{{this.price}}">
+                                            <input type="hidden" name="image" value="{{this.image}}">
+                                            <input type="hidden" name="quantity" value="1">
+                                            <button class="btn btn-sm" {{#unless this.inStock}}disabled{{/unless}}>
+                                                <i class="fi-rs-shopping-bag mr-5"></i>Add to cart
+                                            </button>
+                                        </form>
+                                    </td>
+                                    <td class="action" data-title="Remove">
+                                        <form action="/remove-from-wishlist" method="POST">
+                                            <input type="hidden" name="productId" value="{{this.productId}}">
+                                            <button type="submit" class="btn btn-link text-danger">
+                                                <i class="fi-rs-trash"></i>
+                                            </button>
+                                        </form>
+                                    </td>
+                                </tr>
+                                {{/each}}
+                            </tbody>
+                        </table>
+                    </div>
+                    {{else}}
+                        <div class="text-center mt-50">
+                            <h3>Your wishlist is empty!</h3>
+                            <a href="/products" class="btn btn-brand mt-3">Shop Products</a>
+                        </div>
+                    {{/if}}
+                </div>
+            </div>
+        </div>
+    </section>
+</main>
