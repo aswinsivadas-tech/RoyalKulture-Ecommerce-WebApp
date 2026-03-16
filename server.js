@@ -4,13 +4,13 @@ import cors from "cors";
 import helmet from "helmet";
 import path from "path";
 import { fileURLToPath } from "url";
-// import multer from "multer";
+import multer from "multer";
 import { engine } from "express-handlebars";
-// import userRoutes from "./routes/userRoutes.js";
+import userRoutes from "./routes/userRoutes.js";
 import adminRoutes from "./routes/adminRoutes.js";
 
 import cookieParser from "cookie-parser";
-// import { verifyUser } from "./middleware/verifyUser.js";
+import { verifyUser } from "./middleware/verifyUser.js";
 
 /* CONFIGURATIONS */
 const __filename = fileURLToPath(import.meta.url);
@@ -36,6 +36,13 @@ app.use(
   "/adminAssets",
   express.static(path.join(__dirname, "public/adminAssets"))
 );
+
+// Add for user assets
+app.use(
+  "/userAssets",
+  express.static(path.join(__dirname, "public/userAssets"))
+);
+
 // Apply user verification before user routes
 app.use((req, res, next) => {
   // Skip for admin routes
@@ -47,9 +54,10 @@ app.use((req, res, next) => {
     next();
   });
 });
+
 /* ROUTES */
 app.use("/admin", adminRoutes);
-// app.use("/", userRoutes);
+app.use("/", userRoutes);
 
 app.listen(PORT, () => {
   console.log(
