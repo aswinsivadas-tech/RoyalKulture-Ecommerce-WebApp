@@ -100,40 +100,41 @@
         <!-- Right Action Icons (Shared for Desktop & Mobile) -->
         <div class="header-action-right">
           <div class="header-action-2">
+            
 
-            <!-- Wishlist -->
-            <div class="header-action-icon-2">
-              <a href="/wishlist">
-                <img
-                  alt="wishlist"
-                  src="/userAssets/imgs/theme/icons/icon-heart.svg"
-                />
-                <span class="pro-count">4</span>
-              </a>
-            </div>
+<div class="header-action-right">
+  <div class="header-action-2">
 
-            <!-- Cart -->
-            <div class="header-action-icon-2">
-              <a class="mini-cart-icon" href="/cart">
-                <img
-                  alt="cart"
-                  src="/userAssets/imgs/theme/icons/icon-cart.svg"
-                />
-                <span class="pro-count">2</span>
-              </a>
-            </div>
+    {{#if loggedInUser}}
+      <div class="header-action-icon-2">
+        <a href="/wishlist">
+          <img
+            alt="wishlist"
+            src="/userAssets/imgs/theme/icons/icon-heart.svg"
+          />
+        </a>
+      </div>
 
-            <!-- Burger Menu (Mobile Only) -->
-            <div class="header-action-icon-2 d-block d-lg-none">
-              <div class="burger-icon burger-icon-white">
-                <span class="burger-icon-top"></span>
-                <span class="burger-icon-mid"></span>
-                <span class="burger-icon-bottom"></span>
-              </div>
-            </div>
+      <div class="header-action-icon-2">
+        <a class="mini-cart-icon" href="/cart">
+          <img
+            alt="cart"
+            src="/userAssets/imgs/theme/icons/icon-cart.svg"
+          />
+        </a>
+      </div>
+    {{/if}}
 
-          </div>
-        </div>
+    <div class="header-action-icon-2 d-block d-lg-none">
+      <div class="burger-icon burger-icon-white">
+        <span class="burger-icon-top"></span>
+        <span class="burger-icon-mid"></span>
+        <span class="burger-icon-bottom"></span>
+      </div>
+    </div>
+
+  </div>
+</div>
         <!-- End Right Actions -->
 
       </div>

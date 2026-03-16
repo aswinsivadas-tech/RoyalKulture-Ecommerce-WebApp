@@ -4,6 +4,7 @@ import {
   landingPage,
 loginPage,
 signupPage,
+  productsPage,
 
 } from "../controllers/userController.js";
 import { productDeatilsPage } from "../controllers/productController.js";
@@ -36,5 +37,6 @@ userRoutes.get("/logout", logout);
 
 // public pages
 userRoutes.get("/", landingPage);
+userRoutes.get("/products", productsPage);
 
 export default userRoutes;
