@@ -803,3 +803,79 @@ export const getWishlistPage = async (req, res) => {
     res.redirect("/");
   }
 };
+
+// ==========================================
+// INCREASE CART QUANTITY
+// ==========================================
+export const increaseCartQuantity = async (req, res) => {
+  try {
+    const userId = req.loggedInUser?.id;
+    const { productId } = req.params; // Grabbing ID from the URL
+
+    if (!userId) return res.redirect("/login");
+
+    const db = await connectToDatabase(process.env.DATABASE);
+    const user = await db.collection(collection.USERS_COLLECTION).findOne({ userId });
+
+    if (user && user.cart) {
+      const itemIndex = user.cart.findIndex((item) => item.productId === productId);
+
+      if (itemIndex > -1) {
+        // Find the actual product to make sure we don't exceed stock
+        const product = await db.collection(collection.PRODUCTS_COLLECTION).findOne({ _id: new ObjectId(String(productId)) });
+
+        if (product && user.cart[itemIndex].quantity < product.stock) {
+          user.cart[itemIndex].quantity += 1; // Increase qty
+          user.cart[itemIndex].total = user.cart[itemIndex].quantity * user.cart[itemIndex].price; // 🚨 DO THE MATH! 🚨
+
+          // Save the updated cart to the database
+          await db.collection(collection.USERS_COLLECTION).updateOne(
+            { userId },
+            { $set: { cart: user.cart } }
+          );
+        }
+      }
+    }
+    res.redirect("/cart"); // Reload the page to show new numbers!
+  } catch (error) {
+    console.error("Error increasing cart quantity:", error);
+    res.redirect("/cart");
+  }
+};
+
+// ==========================================
+// DECREASE CART QUANTITY
+// ==========================================
+export const decreaseCartQuantity = async (req, res) => {
+  try {
+    const userId = req.loggedInUser?.id;
+    const { productId } = req.params;
+
+    if (!userId) return res.redirect("/login");
+
+    const db = await connectToDatabase(process.env.DATABASE);
+    const user = await db.collection(collection.USERS_COLLECTION).findOne({ userId });
+
+    if (user && user.cart) {
+      const itemIndex = user.cart.findIndex((item) => item.productId === productId);
+
+      if (itemIndex > -1) {
+        // Only decrease if quantity is greater than 1
+        if (user.cart[itemIndex].quantity > 1) {
+          user.cart[itemIndex].quantity -= 1; // Decrease qty
+          user.cart[itemIndex].total = user.cart[itemIndex].quantity * user.cart[itemIndex].price; // 🚨 DO THE MATH! 🚨
+
+          // Save the updated cart to the database
+          await db.collection(collection.USERS_COLLECTION).updateOne(
+            { userId },
+            { $set: { cart: user.cart } }
+          );
+        }
+      }
+    }
+    res.redirect("/cart"); // Reload the page to show new numbers!
+  } catch (error) {
+    console.error("Error decreasing cart quantity:", error);
+    res.redirect("/cart");
+  }
+};

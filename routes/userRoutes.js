@@ -18,6 +18,8 @@ import {
   removeFromWishlist,
   signupPage,
   updateAccount,
+  increaseCartQuantity, 
+  decreaseCartQuantity,
 } from "../controllers/userController.js";
 import { productDeatilsPage } from "../controllers/productController.js";
 import {
@@ -61,6 +63,9 @@ userRoutes.post("/add-to-cart", requireAuth, addToCart);
 userRoutes.get("/cart/clear", clearCart); //clear cart
 
 userRoutes.get("/cart/remove/:productId", removeFromCart); //remove selected product from cart
+
+userRoutes.get("/cart/increase/:productId", increaseCartQuantity);
+userRoutes.get("/cart/decrease/:productId", decreaseCartQuantity);
 
 //checkout
 userRoutes.get("/checkout", checkoutPage);

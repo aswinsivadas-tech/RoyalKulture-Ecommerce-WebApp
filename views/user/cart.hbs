@@ -17,54 +17,77 @@
               </thead>
               <tbody>
                 {{#each cart}}
-                <tr>
-                  <!-- Product Image -->
-                  <td class="image product-thumbnail">
-                    <img src="{{this.image}}" alt="{{this.name}}">
-                  </td>
+                  <tr>
+                    <!-- Product Image -->
+                    <td class="image product-thumbnail">
+                      <img src="{{this.image}}" alt="{{this.name}}" />
+                    </td>
 
-                  <!-- Product Name & Short Description -->
-                  <td class="product-des product-name">
-                    <h5 class="product-name"><a href="#">{{this.name}}</a></h5>
-                    <p class="font-xs">{{this.shortDescription}}</p>
-                  </td>
+                    <!-- Product Name & Short Description -->
+                    <td class="product-des product-name">
+                      <h5 class="product-name"><a
+                          href="#"
+                        >{{this.name}}</a></h5>
+                      <p class="font-xs">{{this.shortDescription}}</p>
+                    </td>
 
-                  <!-- Price -->
-                  <td class="price" data-title="Price">
-                    <span>₹{{this.price}}</span>
-                  </td>
+                    <!-- Price -->
+                    <td class="price" data-title="Price">
+                      <span>₹{{this.price}}</span>
+                    </td>
 
-                  <!-- Quantity -->
-                  <td class="text-center" data-title="Quantity">
-                    <div class="detail-qty border radius m-auto">
-                      <a href="/cart/decrease/{{this.productId}}" class="qty-down">
-                        <i class="fi-rs-angle-small-down"></i>
+                    <!-- Quantity -->
+                    <td class="text-center" data-title="Quantity">
+                      <div
+                        class="border radius m-auto"
+                        style="display: flex; justify-content: space-between; align-items: center; max-width: 100px; padding: 4px 8px; background: #ffffff;"
+                      >
+
+                        <a
+                          href="/cart/decrease/{{this.productId}}"
+                          style="color: #000000; font-size: 24px; font-weight: bold; text-decoration: none; padding: 0 10px; line-height: 1;"
+                        >
+                          -
+                        </a>
+
+                        <span
+                          style="font-weight: 800; font-size: 16px; color: #000000;"
+                        >
+                          {{this.quantity}}
+                        </span>
+
+                        <a
+                          href="/cart/increase/{{this.productId}}"
+                          style="color: #000000; font-size: 22px; font-weight: bold; text-decoration: none; padding: 0 10px; line-height: 1;"
+                        >
+                          +
+                        </a>
+
+                      </div>
+                    </td>
+
+                    <!-- Subtotal -->
+                    <td class="text-right" data-title="Subtotal">
+                      <span>₹{{this.total}}</span>
+                    </td>
+
+                    <!-- Remove -->
+                    <td class="action" data-title="Remove">
+                      <a
+                        href="/cart/remove/{{this.productId}}"
+                        class="text-muted"
+                      >
+                        <i class="fi-rs-trash"></i>
                       </a>
-                      <span class="qty-val">{{this.quantity}}</span>
-                      <a href="/cart/increase/{{this.productId}}" class="qty-up">
-                        <i class="fi-rs-angle-small-up"></i>
-                      </a>
-                    </div>
-                  </td>
-
-                  <!-- Subtotal -->
-                  <td class="text-right" data-title="Subtotal">
-                    <span>₹{{this.total}}</span>
-                  </td>
-
-                  <!-- Remove -->
-                  <td class="action" data-title="Remove">
-                    <a href="/cart/remove/{{this.productId}}" class="text-muted">
-                      <i class="fi-rs-trash"></i>
-                    </a>
-                  </td>
-                </tr>
+                    </td>
+                  </tr>
                 {{/each}}
 
                 <tr>
                   <td colspan="6" class="text-end">
                     <a href="/cart/clear" class="text-muted">
-                      <i class="fi-rs-cross-small"></i> Clear Cart
+                      <i class="fi-rs-cross-small"></i>
+                      Clear Cart
                     </a>
                   </td>
                 </tr>
@@ -86,14 +109,17 @@
                     <tr>
                       <td class="cart_total_label">Shipping</td>
                       <td class="cart_total_amount">
-                        <i class="ti-gift mr-5"></i> Free Shipping
+                        <i class="ti-gift mr-5"></i>
+                        Free Shipping
                       </td>
                     </tr>
                     <tr>
                       <td class="cart_total_label">Total</td>
                       <td class="cart_total_amount">
                         <strong>
-                          <span class="font-xl fw-900 text-brand">₹{{subtotal}}</span>
+                          <span
+                            class="font-xl fw-900 text-brand"
+                          >₹{{subtotal}}</span>
                         </strong>
                       </td>
                     </tr>
@@ -101,7 +127,8 @@
                 </table>
               </div>
               <a href="/checkout" class="btn mt-3">
-                <i class="fi-rs-box-alt mr-10"></i> Proceed To Checkout
+                <i class="fi-rs-box-alt mr-10"></i>
+                Proceed To Checkout
               </a>
             </div>
           </div>
