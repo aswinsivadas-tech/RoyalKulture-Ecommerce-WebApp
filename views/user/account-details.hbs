@@ -1,45 +1,84 @@
-<div class="card mx-auto" style="max-width: 600px; margin-top: 50px;">
-    <div class="card-header">
-        <h5 class="mb-0">Account Details</h5>
-    </div>
-    <div class="card-body">
-        {{#if success}}
-            <div class="alert alert-success">{{success}}</div>
-        {{/if}}
-        {{#if error}}
-            <div class="alert alert-danger">{{error}}</div>
-        {{/if}}
-
-        <form method="post" name="enq">
-            <div class="row g-3">
-                <div class="col-md-6">
-                    <label class="form-label">Name <span class="text-danger">*</span></label>
-                    <input required class="form-control" name="name" type="text" value="{{user.name}}">
-                </div>
-                <div class="col-12">
-                    <label class="form-label">Email<span class="text-danger">*</span></label>
-                    <input required class="form-control" name="email" type="email" value="{{user.email}}">
-                </div>
-
-                <div class="col-12">
-                    <label class="form-label">Current Password <span class="text-danger">*</span></label>
-                    <input required class="form-control" name="password" type="password" placeholder="Enter current password">
-                </div>
-
-                <div class="col-12">
-                    <label class="form-label">New Password</label>
-                    <input class="form-control" name="npassword" type="password" placeholder="Enter new password (optional)">
-                </div>
-
-                <div class="col-12">
-                    <label class="form-label">Confirm Password</label>
-                    <input class="form-control" name="cpassword" type="password" placeholder="Confirm new password (optional)">
-                </div>
-
-                <div class="col-12 text-center">
-                    <button type="submit" class="btn btn-primary mt-3" name="submit" value="Submit">Save Changes</button>
+<div class="container mt-50 mb-50">
+    <div class="row">
+        <div class="col-lg-4">
+            <div class="card shadow-sm border-0 mb-4">
+                <div class="card-body text-center p-4">
+                    <div class="position-relative d-inline-block mb-3">
+                        <img src="/userAssets/imgs/theme/icons/userlogo.png" alt="User Avatar" class="rounded-circle border" style="width: 120px; height: 120px; object-fit: contain; background: #f8f9fa; padding: 10px;">
+                        <label for="profile-upload" class="position-absolute bottom-0 end-0 bg-primary text-white rounded-circle p-2 shadow-sm" style="cursor: pointer;">
+                            <i class="material-icons" style="font-size: 18px;"></i>
+                        </label>
+                    </div>
+                    <h5 class="mb-0">{{user.name}}</h5>
+                    <p class="text-muted small">{{user.email}}</p>
+                    <hr class="my-4">
+                    <div class="list-group list-group-flush text-start">
+                        <a href="/order-history" class="list-group-item list-group-item-action border-0 py-3"><i class="material-icons align-middle me-2"></i> My Orders</a>
+                        <a href="/wishlist" class="list-group-item list-group-item-action border-0 py-3"><i class="material-icons align-middle me-2"></i> Wishlist</a>
+                        <a href="/admin/logout" class="list-group-item list-group-item-action border-0 py-3 text-danger"><i class="material-icons align-middle me-2"></i> Logout</a>
+                    </div>
                 </div>
             </div>
-        </form>
+        </div>
+
+        <div class="col-lg-8">
+            <div class="card shadow-sm border-0">
+                <div class="card-header bg-white border-bottom p-4">
+                    <h4 class="mb-0">Profile Settings</h4>
+                    <p class="text-muted small mb-0">Update your personal information and security settings.</p>
+                </div>
+                <div class="card-body p-4">
+                    {{#if success}}
+                        <div class="alert alert-success border-0 shadow-sm">{{success}}</div>
+                    {{/if}}
+                    {{#if error}}
+                        <div class="alert alert-danger border-0 shadow-sm">{{error}}</div>
+                    {{/if}}
+
+                    <form method="post" autocomplete="off">
+                        <h5 class="mb-3 border-bottom pb-2">Personal Information</h5>
+                        <div class="row g-3 mb-4">
+                            <div class="col-md-6">
+                                <label class="form-label font-weight-bold">Full Name <span class="text-danger">*</span></label>
+                                <input required class="form-control bg-light border-0 py-2" name="name" type="text" value="{{user.name}}" placeholder="Enter full name">
+                            </div>
+                            <div class="col-md-6">
+                                <label class="form-label font-weight-bold">Display Name (Optional)</label>
+                                <input class="form-control bg-light border-0 py-2" name="dname" type="text" value="{{user.dname}}" placeholder="Public nickname">
+                            </div>
+                            <div class="col-md-6">
+                                <label class="form-label font-weight-bold">Email Address <span class="text-danger">*</span></label>
+                                <input required class="form-control bg-light border-0 py-2" name="email" type="email" value="{{user.email}}">
+                            </div>
+                            <div class="col-md-6">
+                                <label class="form-label font-weight-bold">Phone Number</label>
+                                <input class="form-control bg-light border-0 py-2" name="phone" type="tel" value="{{user.phone}}" placeholder="+91 00000 00000">
+                            </div>
+                        </div>
+
+                        <h5 class="mb-3 border-bottom pb-2">Security & Password</h5>
+                        <div class="row g-3 mb-4">
+                            <div class="col-12">
+                                <label class="form-label font-weight-bold">Current Password <span class="text-danger">*</span></label>
+                                <input required class="form-control bg-light border-0 py-2" name="password" type="password" placeholder="Verify current password to save changes">
+                            </div>
+                            <div class="col-md-6">
+                                <label class="form-label font-weight-bold">New Password</label>
+                                <input class="form-control bg-light border-0 py-2" name="npassword" type="password" placeholder="Leave blank to keep same" autocomplete="new-password">
+                            </div>
+                            <div class="col-md-6">
+                                <label class="form-label font-weight-bold">Confirm New Password</label>
+                                <input class="form-control bg-light border-0 py-2" name="cpassword" type="password" placeholder="Repeat new password">
+                            </div>
+                        </div>
+
+                        <div class="d-grid gap-2 d-md-flex justify-content-md-end">
+                            <button type="reset" class="btn btn-outline-secondary px-4 me-md-2">Reset Changes</button>
+                            <button type="submit" class="btn btn-brand px-5" style="background-color: #088178; color: white;">Save Profile</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
     </div>
 </div>

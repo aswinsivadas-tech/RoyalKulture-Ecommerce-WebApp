@@ -1,6 +1,6 @@
 import express from "express";
 import { adminLogin } from "../controllers/adminAuth.js";
-// import { blockUnblockUser } from "../controllers/userController.js";
+import { blockUnblockUser } from "../controllers/userController.js";
 
 import { createProduct, deleteProduct, editProductDetails } from "../controllers/productController.js";
 import {
@@ -45,7 +45,7 @@ adminRoutes.post(
 
 adminRoutes.post("/products/delete/:id", deleteProduct);
 
-// adminRoutes.post("/block-user/:id", blockUnblockUser);
+adminRoutes.post("/block-user/:id", blockUnblockUser);
 
 adminRoutes.get("/add-product", adminAddProductPage);
 

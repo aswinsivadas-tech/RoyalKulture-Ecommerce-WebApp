@@ -24,7 +24,7 @@ export const createUser = async (req, res) => {
 
     if (user) {
       return res.render("user/signup", {
-        title: "Signup - ChronoRoyale",
+        title: "Signup - RoyalKulture",
         error: "User already exists. Please login instead.",
       });
     }
@@ -55,7 +55,7 @@ export const createUser = async (req, res) => {
   } catch (err) {
     // console.error("Signup Error:", err.message);
     res.render("user/signup", {
-      title: "Signup - ChronoRoyale",
+      title: "Signup - RoyalKulture",
       error: "Something went wrong. Please try again later.",
     });
   }
@@ -69,7 +69,7 @@ export const loginUser = async (req, res) => {
     // Basic validation
     if (!email || !password) {
       return res.render("user/login", {
-        title: "Login - ChronoRoyale",
+        title: "Login - RoyalKulture",
         error: "Email and password are required.",
       });
     }
@@ -81,7 +81,7 @@ export const loginUser = async (req, res) => {
 
     if (!user) {
       return res.render("user/login", {
-        title: "Login - ChronoRoyale",
+        title: "Login - RoyalKulture",
         error: "User does not exist. Please sign up first.",
       });
     }
@@ -89,7 +89,7 @@ export const loginUser = async (req, res) => {
     // 🚫 Blocked user check with visible message
     if (user.isBlocked) {
       return res.render("user/login", {
-        title: "Login - ChronoRoyale",
+        title: "Login - RoyalKulture",
         error: "Your account has been blocked. Please contact support.",
       });
     }
@@ -97,7 +97,7 @@ export const loginUser = async (req, res) => {
     const isMatch = await bcrypt.compare(password, user.password);
     if (!isMatch) {
       return res.render("user/login", {
-        title: "Login - ChronoRoyale",
+        title: "Login - RoyalKulture",
         error: "Invalid credentials. Please try again.",
       });
     }
@@ -122,7 +122,7 @@ export const loginUser = async (req, res) => {
   } catch (err) {
     // console.error("Login Error:", err.message);
     res.render("user/login", {
-      title: "Login - ChronoRoyale",
+      title: "Login - RoyalKulture",
       error: "Something went wrong. Please try again later.",
     });
   }
