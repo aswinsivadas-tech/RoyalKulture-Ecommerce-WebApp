@@ -8,60 +8,44 @@
     <div class="container">
       <div class="row align-items-center">
 
-        <!-- Left: Empty / future use -->
         <div class="col-xl-3 col-lg-4">
           <div class="header-info"></div>
         </div>
 
-        <!-- Center: Flash Offers -->
         <div class="col-xl-6 col-lg-4">
           <div class="text-center">
             <div id="news-flash" class="d-inline-block">
               <ul>
-                <li>
-                  Get Sneakers up to 50% off
-                  <a href="shop-grid-right.html">View details</a>
-                </li>
-                <li>Super Value Deals -own your snakers now</li>
-                <li>
-                  Shop Authentic Premium Sneakers
-                  <a href="shop-grid-right.html">Shop now</a>
-                </li>
+                <li>Get Sneakers up to 50% off <a href="/products">View details</a></li>
+                <li>Super Value Deals - own your sneakers now</li>
+                <li>Shop Authentic Premium Sneakers <a href="/products">Shop now</a></li>
               </ul>
             </div>
           </div>
         </div>
 
-        <!-- Right: Login -->
         <div class="col-xl-3 col-lg-4">
-  <div class="header-info header-info-right">
-    <ul>
-      {{#if loggedInUser}}
-        <!-- If user is logged in -->
-        <li>
-          <i class="fi-rs-user"></i>
-          <a href="/account-details">Welcome, {{loggedInUser.name}}</a>
-        </li>
-        <li>
-          <i class="fi-rs-logout"></i>
-          <a href="/logout">Logout</a>
-        </li>
-      {{else}}
-        <!-- If user is not logged in -->
-        <li>
-          <i class="fi-rs-user"></i>
-          <a href="/login">Log In / Sign Up</a>
-        </li>
-      {{/if}}
-    </ul>
-  </div>
-</div>
-
+          <div class="header-info header-info-right">
+            <ul>
+              {{#if loggedInUser}}
+                <li>
+                  <a href="/account-details">Welcome, {{loggedInUser.name}}</a>
+                </li>
+                <li>
+                  <a href="/logout">Logout</a>
+                </li>
+              {{else}}
+                <li>
+                  <a href="/login">Log In / Sign Up</a>
+                </li>
+              {{/if}}
+            </ul>
+          </div>
+        </div>
 
       </div>
     </div>
   </div>
-  <!-- ========== END HEADER TOP ========== -->
 
   <!-- ========== HEADER BOTTOM (Logo, Nav, Actions) ========== -->
   <div class="header-bottom header-bottom-bg-color sticky-bar">
@@ -70,89 +54,231 @@
 
         <!-- Mobile Logo -->
         <div class="logo logo-width-1 d-block d-lg-none">
-          <a href="index.html">
+          <a href="/">
             <img src="/userAssets/imgs/theme/logo2.svg" alt="logo" />
           </a>
         </div>
 
         <!-- Navigation (Desktop Only) -->
-        <div class="header-nav d-none d-lg-flex">
-          <div class="main-categori-wrap d-none d-lg-block">
-            <a class="categori-button-active" href="#">
-              <img src="/userAssets/imgs/theme/logo2.svg" alt="logo" />
-              <span class="fi-rs-apps"></span>
+        <div class="header-nav d-none d-lg-flex align-items-center">
+
+          <!-- Logo/Brand — -->
+          <div class="main-categori-wrap d-none d-lg-block" style="flex-shrink:0; margin-right: 48px;">
+            <a class="categori-button-active rk-brand-btn" href="/">
+              <img src="/userAssets/imgs/theme/logo2.svg" alt="logo" style="height:96px; width:auto; display:block; flex-shrink:0;" />
               RoyalKulture
             </a>
           </div>
-          <div
-            class="main-menu main-menu-padding-1 main-menu-lh-2 d-none d-lg-block"
-          >
+
+          <!-- Nav links -->
+          <div class="main-menu main-menu-padding-1 main-menu-lh-2 d-none d-lg-block">
             <nav>
               <ul>
-                <li><a class="active" href="/">Home</a></li>
+                <li><a href="/">Home</a></li>
                 <li><a href="/products">Products</a></li>
                 <li><a href="/order-history">Orders</a></li>
-               
               </ul>
             </nav>
           </div>
+
         </div>
 
-        <!-- Right Action Icons (Shared for Desktop & Mobile) -->
+        <!-- Right Action Icons -->
         <div class="header-action-right">
           <div class="header-action-2">
-            
 
-<div class="header-action-right">
-  <div class="header-action-2">
+            {{#if loggedInUser}}
+              <div class="header-action-icon-2">
+                <a href="/wishlist">
+                  <img alt="wishlist" src="/userAssets/imgs/theme/icons/icon-heart.svg" />
+                  {{#if loggedInUser.wishlistCount}}
+                    <span class="pro-count blue">{{loggedInUser.wishlistCount}}</span>
+                  {{/if}}
+                </a>
+              </div>
 
-    {{#if loggedInUser}}
-      <div class="header-action-icon-2">
-        <a href="/wishlist">
-          <img
-            alt="wishlist"
-            src="/userAssets/imgs/theme/icons/icon-heart.svg"
-          />
-          {{#if loggedInUser.wishlistCount}}
-            <span class="pro-count blue">{{loggedInUser.wishlistCount}}</span>
-        {{/if}}
-        </a>
-      </div>
+              <div class="header-action-icon-2">
+                <a class="mini-cart-icon" href="/cart">
+                  <img alt="cart" src="/userAssets/imgs/theme/icons/icon-cart.svg" />
+                  {{#if loggedInUser.cartCount}}
+                    <span class="pro-count blue">{{loggedInUser.cartCount}}</span>
+                  {{/if}}
+                </a>
+              </div>
+            {{/if}}
 
-      <div class="header-action-icon-2">
-        <a class="mini-cart-icon" href="/cart">
-          <img
-            alt="cart"
-            src="/userAssets/imgs/theme/icons/icon-cart.svg"
-          />
-          {{#if loggedInUser.cartCount}}
-            <span class="pro-count blue">{{loggedInUser.cartCount}}</span>
-        {{/if}}
-        </a>
-      </div>
-    {{/if}}
+            <div class="header-action-icon-2 d-block d-lg-none">
+              <div class="burger-icon burger-icon-white">
+                <span class="burger-icon-top"></span>
+                <span class="burger-icon-mid"></span>
+                <span class="burger-icon-bottom"></span>
+              </div>
+            </div>
 
-    <div class="header-action-icon-2 d-block d-lg-none">
-      <div class="burger-icon burger-icon-white">
-        <span class="burger-icon-top"></span>
-        <span class="burger-icon-mid"></span>
-        <span class="burger-icon-bottom"></span>
-      </div>
-    </div>
-
-  </div>
-</div>
-        <!-- End Right Actions -->
+          </div>
+        </div>
 
       </div>
     </div>
   </div>
-  <!-- ========== END HEADER BOTTOM ========== -->
 
 </header>
-<!-- ================================
-  HEADER END
-================================ -->
+
+<style>
+  /* ══ ANNOUNCEMENT BAR ══ */
+  .header-top-ptb-1 {
+    background: #0c0c0c !important;
+    border-bottom: 1px solid rgba(255,255,255,0.08) !important;
+    padding: 14px 0 !important;
+  }
+
+  /* Center ticker text */
+  #news-flash li,
+  .header-top-ptb-1 .col-xl-6 li {
+    font-family: 'DM Sans', sans-serif !important;
+    font-size: 13px !important;
+    font-weight: 500 !important;
+    color: #e0e0e0 !important;
+    letter-spacing: 0.01em !important;
+  }
+
+  /* "Shop now" / "View details" — bright so visible on black */
+  #news-flash a,
+  .header-top-ptb-1 .col-xl-6 a {
+    color: #00ffcc !important;
+    font-family: 'DM Sans', sans-serif !important;
+    font-weight: 700 !important;
+    font-size: 13px !important;
+    text-decoration: underline !important;
+    text-underline-offset: 3px !important;
+    text-decoration-color: rgba(0,255,204,0.6) !important;
+    background: none !important;
+    border: none !important;
+    padding: 0 !important;
+    border-radius: 0 !important;
+    transition: opacity 0.15s !important;
+  }
+  #news-flash a:hover,
+  .header-top-ptb-1 .col-xl-6 a:hover {
+    opacity: 0.7 !important;
+    color: #00ffcc !important;
+  }
+
+  /* Welcome / Login / Logout pill buttons */
+  .header-top-ptb-1 .header-info-right ul {
+    display: flex !important;
+    align-items: center !important;
+    gap: 10px !important;
+    justify-content: flex-end !important;
+    margin: 0 !important;
+    padding: 0 !important;
+  }
+  .header-top-ptb-1 .header-info-right ul li {
+    padding: 0 !important;
+    list-style: none !important;
+  }
+  .header-top-ptb-1 .header-info-right ul li a {
+    font-family: 'Syne', sans-serif !important;
+    font-size: 15px !important;
+    font-weight: 800 !important;
+    color: #ffffff !important;
+    text-decoration: none !important;
+    letter-spacing: 0.01em !important;
+    padding: 8px 20px !important;
+    background: rgba(255,255,255,0.08) !important;
+    border-radius: 8px !important;
+    border: 1.5px solid rgba(255,255,255,0.2) !important;
+    display: inline-block !important;
+    white-space: nowrap !important;
+    transition: background 0.15s, color 0.15s, border-color 0.15s !important;
+  }
+  .header-top-ptb-1 .header-info-right ul li a:hover {
+    background: #00ffcc !important;
+    color: #000000 !important;
+    border-color: #00ffcc !important;
+    opacity: 1 !important;
+  }
+
+  /* Hide icons */
+  .header-top-ptb-1 .fi-rs-user,
+  .header-top-ptb-1 .fi-rs-logout {
+    display: none !important;
+  }
+
+  /* ══ HEADER BOTTOM ══ */
+  .header-bottom-bg-color {
+    background: #ffffff !important;
+    border-bottom: 1.5px solid #e8e7e3 !important;
+    box-shadow: 0 2px 16px rgba(0,0,0,0.05) !important;
+  }
+  .header-bottom-bg-color .header-wrap {
+    min-height: 100px !important;
+    padding: 6px 0 !important;
+  }
+
+  /* ══ BRAND BUTTON ══ */
+  .rk-brand-btn {
+    display: inline-flex !important;
+    align-items: center !important;
+    gap: 10px !important;
+    white-space: nowrap !important;
+    max-width: 260px !important;
+    padding: 6px 14px 6px 8px !important;
+    border-radius: 10px !important;
+    font-family: 'Syne', sans-serif !important;
+    font-size: 17px !important;
+    font-weight: 800 !important;
+    color: #0c0c0c !important;
+    background: transparent !important;
+    border: none !important;
+    text-decoration: none !important;
+    letter-spacing: -0.02em !important;
+    transition: background 0.15s !important;
+  }
+  .rk-brand-btn:hover {
+    background: #e8faf5 !important;
+    color: #009874 !important;
+  }
+  .rk-brand-btn .fi-rs-apps { display: none !important; }
+
+  /* ══ NAV LINKS — Big, Bold, with gap from brand ══ */
+  .header-nav .main-menu {
+    margin-left: 0 !important;
+  }
+  .main-menu.main-menu-padding-1 > nav > ul > li > a,
+  .main-menu > nav > ul > li > a {
+    font-family: 'Syne', sans-serif !important;
+    font-size: 16px !important;
+    font-weight: 700 !important;
+    color: #111111 !important;
+    padding: 8px 20px !important;
+    border-radius: 10px !important;
+    letter-spacing: -0.01em !important;
+    transition: background 0.15s, color 0.15s !important;
+    background: transparent !important;
+    white-space: nowrap !important;
+  }
+  .main-menu.main-menu-padding-1 > nav > ul > li > a:hover,
+  .main-menu > nav > ul > li > a:hover {
+    background: #e8faf5 !important;
+    color: #009874 !important;
+  }
+  .main-menu.main-menu-padding-1 > nav > ul > li > a.active,
+  .main-menu > nav > ul > li > a.active {
+    background: transparent !important;
+    color: #111111 !important;
+  }
+
+  /* ══ ACTION ICONS ══ */
+  .header-action-icon-2 > a {
+    border-radius: 10px !important;
+    padding: 6px !important;
+    transition: background 0.15s !important;
+  }
+  .header-action-icon-2 > a:hover {
+    background: #e8faf5 !important;
+  }
+</style>
 
 <!-- ================================
   MOBILE HEADER WRAPPER
@@ -160,16 +286,13 @@
 <div class="mobile-header-active mobile-header-wrapper-style">
   <div class="mobile-header-wrapper-inner">
 
-    <!-- Mobile Header Top -->
     <div class="mobile-header-top">
       <div class="mobile-header-logo">
-        <a href="index.html">
+        <a href="/">
           <img src="/userAssets/imgs/theme/logo.svg" alt="logo" />
         </a>
       </div>
-      <div
-        class="mobile-menu-close close-style-wrap close-style-position-inherit"
-      >
+      <div class="mobile-menu-close close-style-wrap close-style-position-inherit">
         <button class="close-style search-close">
           <i class="icon-top"></i>
           <i class="icon-bottom"></i>
@@ -177,50 +300,34 @@
       </div>
     </div>
 
-    <!-- Mobile Menu -->
     <div class="mobile-header-content-area">
       <div class="mobile-menu-wrap mobile-header-border">
         <nav>
           <ul class="mobile-menu">
-            <li class="menu-item"><a href="index.html">Home</a></li>
-            <li class="menu-item"><a
-                href="shop-grid-right.html"
-              >Products</a></li>
-              
+            <li class="menu-item"><a href="/">Home</a></li>
+            <li class="menu-item"><a href="/products">Products</a></li>
+            <li class="menu-item"><a href="/order-history">Orders</a></li>
           </ul>
         </nav>
       </div>
 
-      <!-- Mobile Footer Info -->
       <div class="mobile-header-info-wrap mobile-header-border">
         <div class="single-mobile-header-info">
-          <a href="page-login-register.html">Log In / Sign Up</a>
+          {{#if loggedInUser}}
+            <a href="/account-details">Welcome, {{loggedInUser.name}}</a>
+          {{else}}
+            <a href="/login">Log In / Sign Up</a>
+          {{/if}}
         </div>
       </div>
 
-      <!-- Mobile Social Icons -->
       <div class="mobile-social-icon">
         <h5 class="mb-15 text-grey-4">Follow Us</h5>
-        <a href="#"><img
-            src="/userAssets/imgs/theme/icons/icon-facebook.svg"
-            alt="facebook"
-          /></a>
-        <a href="#"><img
-            src="/userAssets/imgs/theme/icons/icon-twitter.svg"
-            alt="twitter"
-          /></a>
-        <a href="#"><img
-            src="/userAssets/imgs/theme/icons/icon-instagram.svg"
-            alt="instagram"
-          /></a>
-        <a href="#"><img
-            src="/userAssets/imgs/theme/icons/icon-pinterest.svg"
-            alt="pinterest"
-          /></a>
-        <a href="#"><img
-            src="/userAssets/imgs/theme/icons/icon-youtube.svg"
-            alt="youtube"
-          /></a>
+        <a href="#"><img src="/userAssets/imgs/theme/icons/icon-facebook.svg" alt="facebook" /></a>
+        <a href="#"><img src="/userAssets/imgs/theme/icons/icon-twitter.svg" alt="twitter" /></a>
+        <a href="#"><img src="/userAssets/imgs/theme/icons/icon-instagram.svg" alt="instagram" /></a>
+        <a href="#"><img src="/userAssets/imgs/theme/icons/icon-pinterest.svg" alt="pinterest" /></a>
+        <a href="#"><img src="/userAssets/imgs/theme/icons/icon-youtube.svg" alt="youtube" /></a>
       </div>
     </div>
 
