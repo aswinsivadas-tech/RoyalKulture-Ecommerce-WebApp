@@ -35,7 +35,7 @@ export const productsPage = async (req, res) => {
 
     // Render the products page
     res.render("user/products", {
-      title: "Product's List - ChronoRoyale",
+      title: "Product's List - RoyalKulture",
       products: productsWithStock, // send data with stock status
       user, // ✅ Pass user to HBS
     });
@@ -157,7 +157,7 @@ if (token) {
 
     // Render homepage with dynamic products + stock info
     res.render("user/home", {
-      title: "Home - ChronoRoyale",
+      title: "Home - RoyalKulture",
       banners: bannerData,
       brands: brandData,
       featured: featuredWithStock,
@@ -175,7 +175,7 @@ if (token) {
 export const loginPage = async (req, res) => {
   // console.log("Login page route working 🚀");
   try {
-    res.render("user/login", { title: "Login - ChronoRoyale" });
+    res.render("user/login", { title: "Login - RoyalKulture" });
   } catch (error) {
     // console.log(error);
   }
@@ -185,7 +185,7 @@ export const signupPage = async (req, res) => {
  
   try {
     createUser;
-    res.render("user/signup", { title: "Signup - ChronoRoyale" });
+    res.render("user/signup", { title: "Signup - RoyalKulture" });
   } catch (error) {
     // console.log(error);
   }
