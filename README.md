@@ -1,4 +1,4 @@
-# ⌚ RoyalKulture - Full Stack E-commerce WebApp
+# 👟 RoyalKulture - Full Stack E-commerce WebApp
 
 > RoyalKulture is a full-stack ecommerce WebApp  designed for the premium Sneakers/Shoes retail Webshop. It leverages a scalable architecture to provide secure user sessions, persistent cart/wishlist functionality, and a comprehensive admin panel. The platform focuses on high conversion through optimized UI/UX and a streamlined order fulfillment pipeline.
 
