@@ -108,7 +108,7 @@ export const loginUser = async (req, res) => {
     const token = jwt.sign(
       { id: user.userId, name: user.name, email: user.email },
       process.env.JWT_SECRET,
-      { expiresIn: "2d" }
+      { expiresIn: "30m" }
     );
 
     // store token in a cookie for session
