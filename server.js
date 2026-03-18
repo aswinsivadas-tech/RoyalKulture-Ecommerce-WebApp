@@ -19,7 +19,7 @@ const __dirname = path.dirname(__filename);
 dotenv.config();
 
 const app = express();
-const PORT = process.env.PORT || 3000;
+const PORT = process.env.PORT || 5000;
 
 app.use(cookieParser());
 
@@ -34,13 +34,13 @@ app.use("/assets", express.static(path.join(__dirname, "public/assets")));
 //Add for admin assets
 app.use(
   "/adminAssets",
-  express.static(path.join(__dirname, "public/adminAssets"))
+  express.static(path.join(__dirname, "public/adminAssets")),
 );
 
 // Add for user assets
 app.use(
   "/userAssets",
-  express.static(path.join(__dirname, "public/userAssets"))
+  express.static(path.join(__dirname, "public/userAssets")),
 );
 
 // Apply user verification before user routes
@@ -61,7 +61,7 @@ app.use("/", userRoutes);
 
 app.listen(PORT, () => {
   console.log(
-    `process ID ${process.pid}:server running on PORT ${PORT} in dev mode`
+    `process ID ${process.pid}:server running on PORT ${PORT} in dev mode`,
   );
 });
 
@@ -86,7 +86,7 @@ app.engine(
         return arg1 == arg2 ? options.fn(this) : options.inverse(this);
       },
     },
-  })
+  }),
 );
 
 // set view engine
