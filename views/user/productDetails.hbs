@@ -50,10 +50,14 @@
                   <div class="clearfix product-price-cover">
                     <div class="product-price primary-color float-left">
                       <ins>
-                        <span class="text-brand">₹{{product.discountPrice}}</span>
+                        <span
+                          class="text-brand"
+                        >₹{{product.discountPrice}}</span>
                       </ins>
                       <ins>
-                        <span class="old-price font-md ml-15">₹{{product.price}}</span>
+                        <span
+                          class="old-price font-md ml-15"
+                        >₹{{product.price}}</span>
                       </ins>
                       <span class="save-price font-md color3 ml-15">25% Off</span>
                     </div>
@@ -69,7 +73,9 @@
                     <ul>
                       <li class="mb-10">
                         <i class="fi-rs-crown mr-5"></i>
-                        1 Year {{product.brand}} Brand Warranty
+                        1 Year
+                        {{product.brand}}
+                        Brand Warranty
                       </li>
                       <li class="mb-10">
                         <i class="fi-rs-badge mr-5"></i>{{stockStatus}}
@@ -91,7 +97,11 @@
                   {{/if}}
 
                   <!-- ====== ADD TO CART FORM ====== -->
-                  <form action="/add-to-cart" method="POST" class="add-to-cart-form">
+                  <form
+                    action="/add-to-cart"
+                    method="POST"
+                    class="add-to-cart-form"
+                  >
                     <div class="detail-qty border radius mb-20">
                       <input
                         type="number"
@@ -104,24 +114,44 @@
                     </div>
 
                     <!-- Hidden inputs for product info -->
-                    <input type="hidden" name="productId" value="{{product._id}}" />
+                    <input
+                      type="hidden"
+                      name="productId"
+                      value="{{product._id}}"
+                    />
                     <input type="hidden" name="name" value="{{product.name}}" />
-                    <input type="hidden" name="brand" value="{{product.brand}}" />
-                    <input type="hidden" name="price" value="{{product.discountPrice}}" />
-                    <input type="hidden" name="image" value="{{product.picturePath.[0]}}" />
-                    <input type="hidden" name="shortDescription" value="{{product.shortDesc}}" />
+                    <input
+                      type="hidden"
+                      name="brand"
+                      value="{{product.brand}}"
+                    />
+                    <input
+                      type="hidden"
+                      name="price"
+                      value="{{product.discountPrice}}"
+                    />
+                    <input
+                      type="hidden"
+                      name="image"
+                      value="{{product.picturePath.[0]}}"
+                    />
+                    <input
+                      type="hidden"
+                      name="shortDescription"
+                      value="{{product.shortDesc}}"
+                    />
 
                     <div class="product-extra-link2">
                       <button type="submit" class="button button-add-to-cart">
                         Add to cart
                       </button>
-                      {{!-- <a
+                      {{! <a
                         aria-label="Add To Wishlist"
                         class="action-btn hover-up"
                         href="shop-wishlist.html"
                       >
                         <i class="fi-rs-heart"></i>
-                      </a> --}}
+                      </a> }}
                     </div>
                   </form>
 
@@ -130,22 +160,37 @@
                     <ul class="text-grey-5 d-inline-block">
                       <li><strong class="mr-10">Share this:</strong></li>
                       <li class="social-facebook">
-                        <a href="#"><img src="/userAssets/imgs/theme/icons/icon-facebook.svg" alt="Facebook" /></a>
+                        <a href="#"><img
+                            src="/userAssets/imgs/theme/icons/icon-facebook.svg"
+                            alt="Facebook"
+                          /></a>
                       </li>
                       <li class="social-twitter">
-                        <a href="#"><img src="/userAssets/imgs/theme/icons/icon-twitter.svg" alt="Twitter" /></a>
+                        <a href="#"><img
+                            src="/userAssets/imgs/theme/icons/icon-twitter.svg"
+                            alt="Twitter"
+                          /></a>
                       </li>
                       <li class="social-instagram">
-                        <a href="#"><img src="/userAssets/imgs/theme/icons/icon-instagram.svg" alt="Instagram" /></a>
+                        <a href="#"><img
+                            src="/userAssets/imgs/theme/icons/icon-instagram.svg"
+                            alt="Instagram"
+                          /></a>
                       </li>
                       <li class="social-linkedin">
-                        <a href="#"><img src="/userAssets/imgs/theme/icons/icon-pinterest.svg" alt="Pinterest" /></a>
+                        <a href="#"><img
+                            src="/userAssets/imgs/theme/icons/icon-pinterest.svg"
+                            alt="Pinterest"
+                          /></a>
                       </li>
                     </ul>
                   </div>
-                </div> <!-- End detail-info -->
-              </div> <!-- End right column -->
-            </div> <!-- End product detail row -->
+                </div>
+                <!-- End detail-info -->
+              </div>
+              <!-- End right column -->
+            </div>
+            <!-- End product detail row -->
 
             <!-- ====== DESCRIPTION ====== -->
             <div class="row">
@@ -156,8 +201,6 @@
                 </div>
               </div>
             </div>
-
-          
 
             <!-- ====== RELATED PRODUCTS ====== -->
             <div class="row mt-60">
@@ -172,20 +215,32 @@
                         <div class="product-img-action-wrap">
                           <div class="product-img product-img-zoom">
                             <a href="/productDetails?id={{this._id}}">
-                              <img class="default-img" src="{{this.picturePath.[0]}}" alt="{{this.name}}" />
+                              <img
+                                class="default-img"
+                                src="{{this.picturePath.[0]}}"
+                                alt="{{this.name}}"
+                              />
                             </a>
                           </div>
                           <div class="product-action-1">
-                            <a aria-label="Add To Wishlist" class="action-btn small hover-up" href="shop-wishlist.html">
+                            <a
+                              aria-label="Add To Wishlist"
+                              class="action-btn small hover-up"
+                              href="shop-wishlist.html"
+                            >
                               <i class="fi-rs-heart"></i>
                             </a>
                           </div>
-                          <div class="product-badges product-badges-position product-badges-mrg">
+                          <div
+                            class="product-badges product-badges-position product-badges-mrg"
+                          >
                             <span class="hot">{{this.category}}</span>
                           </div>
                         </div>
                         <div class="product-content-wrap">
-                          <h2><a href="/productDetails?id={{this._id}}">{{this.name}}</a></h2>
+                          <h2><a
+                              href="/productDetails?id={{this._id}}"
+                            >{{this.name}}</a></h2>
                           <div class="product-price">
                             <span>₹{{this.discountPrice}}</span>
                             <span class="old-price">₹{{this.price}}</span>
@@ -200,17 +255,26 @@
 
             <!-- ====== BANNER ====== -->
             <div class="banner-img banner-big wow fadeIn f-none animated mt-50">
-              <img class="border-radius-10" src="/userAssets/imgs/banner/banner-4.png" alt="" />
+              <img
+                class="border-radius-10"
+                src="/userAssets/imgs/banner/banner-4.png"
+                alt=""
+              />
               <div class="banner-text">
                 <h4 class="mb-15 mt-40">Premium Sneaker Store</h4>
                 <h2 class="fw-600 mb-20">
-                 From iconic classics to the latest releases.<br />Shop 100% Authentic Sneakers
+                  From iconic classics to the latest releases.<br />Shop 100%
+                  Authentic Sneakers
                 </h2>
               </div>
             </div>
-          </div> <!-- End product-detail accordion-detail -->
-        </div> <!-- End col-lg-12 -->
-      </div> <!-- End row -->
-    </div> <!-- End container -->
+          </div>
+          <!-- End product-detail accordion-detail -->
+        </div>
+        <!-- End col-lg-12 -->
+      </div>
+      <!-- End row -->
+    </div>
+    <!-- End container -->
   </section>
 </main>

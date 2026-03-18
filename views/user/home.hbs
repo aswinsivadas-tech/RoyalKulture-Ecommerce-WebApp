@@ -121,17 +121,17 @@
                         <img
                           class="default-img"
                           src="{{this.picturePath.[0]}}"
-                          alt="{{this.name}}"
-                        />
+                          {{!-- alt="{{this.name}}"
+                        /> --}}
                         <img
                           class="hover-img"
                           src="{{this.picturePath.[1]}}"
-                          alt="{{this.name}}"
+                          {{!-- alt="{{this.name}}" --}}
                         />
                       </a>
                     </div>
                     
-                   {{#if ../user}}
+                  {{#if ../user}}
   <div class="product-action-1">
     <form action="/add-to-wishlist" method="post">
       <input type="hidden" name="productId" value="{{this._id}}" />
@@ -181,7 +181,7 @@
                     </div>
                     {{#unless (eq this.stockStatus "  ")}}
                     <div class="product-action-1 show">
-                         {{#if ../user}}
+      {{#if ../user}}
       {{#unless (eq this.stockStatus "🔴 Currently unavailable")}}
         <div class="product-action-1 show">
           <form action="/add-to-cart" method="post">
@@ -245,16 +245,16 @@
                         <img
                           class="default-img"
                           src="{{this.picturePath.[0]}}"
-                          alt="{{this.name}}"
+                          {{!-- alt="{{this.name}}" --}}
                         />
                         <img
                           class="hover-img"
                           src="{{this.picturePath.[1]}}"
-                          alt="{{this.name}}"
+                          {{!-- alt="{{this.name}}" --}}
                         />
                       </a>
                     </div>
-                                     {{#if ../user}}
+        {{#if ../user}}
   <div class="product-action-1">
     <form action="/add-to-wishlist" method="post">
       <input type="hidden" name="productId" value="{{this._id}}" />
@@ -362,16 +362,16 @@
                         <img
                           class="default-img"
                           src="{{this.picturePath.[0]}}"
-                          alt="{{this.name}}"
+                          {{!-- alt="{{this.name}}" --}}
                         />
                         <img
                           class="hover-img"
                           src="{{this.picturePath.[1]}}"
-                          alt="{{this.name}}"
+                          {{!-- alt="{{this.name}}" --}}
                         />
                       </a>
                     </div>
-                                       {{#if ../user}}
+  {{#if ../user}}
   <div class="product-action-1">
     <form action="/add-to-wishlist" method="post">
       <input type="hidden" name="productId" value="{{this._id}}" />
@@ -561,7 +561,7 @@
                   </div>
 
                   <!-- Wishlist Button -->
-                                     {{#if ../user}}
+                {{#if ../user}}
   <div class="product-action-1">
     <form action="/add-to-wishlist" method="post">
       <input type="hidden" name="productId" value="{{this._id}}" />
